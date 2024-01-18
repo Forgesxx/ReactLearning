@@ -15,13 +15,9 @@ export default function App() {
 <WaysToTeach {... ways[1]}></WaysToTeach>
 <WaysToTeach {... ways[2]}></WaysToTeach>
 <WaysToTeach {... ways[3]}></WaysToTeach>
-
         </ul>
       </section>
       </main>
-
     </div>
   )
 }
-
-
