@@ -19,9 +19,15 @@ export const ways = [
     description:
       'VK, Avito, Тинькофф, Kaspersky — действующие разработчики с опытом преподавания для большой аудитории.',
   },
- {
+ 
+  {
+  title: 'Lorem Ipsum1212 - ',
+  description: ' Some тThing',
+  }
+  ,
+  {
   title: 'Lorem Ipsum - ',
-  description: ' Some Thing',
+  description: ' Some тThing',
  }
 ,
 
