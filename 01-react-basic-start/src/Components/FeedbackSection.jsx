@@ -1,48 +1,79 @@
 import Button from './Button/Button'
 import { useState } from 'react'
+
+
+function StateVsRef(){
+    const [stateVsRef, setStateVsRef] = useState('')
+    const [show, setShow] = useState('true')
+
+    function handleKeyDown(event){
+        if(event.key === 'Enter'){
+        setShow(true)}
+    }
+    return(
+        <div>
+
+            <h3>Input: {show && stateVsRef} </h3> 
+   
+            <input type='text'
+            value={stateVsRef}
+            onKeyDown={handleKeyDown }
+            onChange={(e)=> setStateVsRef(e.target.value)}
+            ></input>
+        </div>
+    )
+    
+}
 export default function FeedbackSection()
 {
-    const [form, setForm] = useState({
-        name: '',
-        hasError: true,
-        reason: 'help',
-    })
+const [name, setName] = useState('')
+const [hasError, setHasError] = useState(false)
+const [reason, setReason] = useState('help')
+
 
    function handleNameChange(event){
-    // setName(event.target.value)
-    // setHasError(event.target.value.trim().length === 0  )
-    setForm(prev => ({...prev, 
-        name: event.target.value,
-        hasError: event.target.value.trim().length === 0,}))
+      setName(event.target.value)
     
+      setHasError(event.target.value.trim().length === 0)
+      
+   }
+   function toggleError(){
+    setHasError((prev)=> !prev)
+
    }
 
-    return(
+    return (
     <section>
+         <Button onClick={toggleError}>Toggle error</Button>
             <h3>CallBack</h3>
-            <form>
+            <form style={{marginBottom:'1rem'}}>
                 <label htmlFor="name">Your name</label>
                 <input 
                 type=" " 
                 className="control" 
-                value={form.name} 
+                value={name} 
                 style={{
-                    border: form.hasError ? '1px solid red' : null, 
+                    border: hasError ? '1px solid red' : null,
                 }}
                 onChange={handleNameChange}/>
                 <label htmlFor="reason">Reason for application:</label>
                 <select 
                 id="reason" 
                 className="control" 
-                value={form.reason} 
-                onChange={event => setForm(...prev, event.target.value)}>
-                <option value="Error">Error</option>
-                <option value="Help">Need help</option>
-                <option value="Suggest">Suggestion</option>
+                value={reason} 
+                onChange={event => setReason(event.target.value)}>
+                <option value="error">Error</option>
+                <option value="help">Need help</option>
+                <option value="suggest">Suggestion</option>
                 </select>
-                <Button type='button' disabled={form.hasError} isActive={!form.hasError} >Send</Button>
+                <Button type='button' disabled={hasError} isActive={!hasError} >Send</Button>
 
             </form>
+            <pre>
+            Name: {name} <br />    
+            reason: {reason}
+            </pre> 
+           <StateVsRef />
     </section>
     )
 }
