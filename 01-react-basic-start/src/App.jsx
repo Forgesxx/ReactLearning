@@ -5,15 +5,21 @@ import IntroSection from './Components/IntroSection'
 import TabsSection from './Components/TabsSection'
 import FeedbackSection from './Components/FeedbackSection'
 import { useState } from 'react'
+import EffectSection from './Components/EffectSection'
 
 
 export default function App() {
-  const [tab, SetTab] = useState('feedback')
+  const [tab, SetTab] = useState('effect')
+  const [visible, setVisble] = useState(true)
+
+  // setTimeout(()=>{
+  //   setVisble(false)
+  // }, 3000)
 
 
   return (
   <>
-      <Header />
+      {visible && <Header />}
       <main>
         <IntroSection/>
         <TabsSection active={tab} onChange={(current)=> SetTab(current)}/>     
@@ -25,7 +31,11 @@ export default function App() {
     }  
 {tab === 'feedback' &&   
 <FeedbackSection/>
-}       
+}
+
+{tab === 'effect' &&   
+<EffectSection/>
+}  
 
       </main>
   </>   
